@@ -1,0 +1,28 @@
+{
+  "name": "lira-now",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "server:dev": "bun run --hot server/index.ts",
+    "tauri": "tauri",
+    "icon": "bun tauri icon resources/icon.png",
+    "check": "biome check . --write --unsafe",
+    "build:android": "bun tauri android build --apk true --split-per-abi"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.8",
+    "@tauri-apps/cli": "^2.9.6",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@types/node": "^25.0.9",
+    "dotenv": "^17.2.3",
+    "hono": "^4.11.4",
+    "ioredis": "^5.9.2"
+  }
+}

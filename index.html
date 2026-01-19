@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="أسعار الصرف في سوريا" />
+    <title>LiraNow</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <h1 id="app-title">أسعار الصرف في سوريا</h1>
+      <p id="app-subtitle" class="subtitle">أسعار لحظية من دمشق</p>
+
+      <div id="dashboard" class="dashboard-grid">
+        <p class="loading">جاري تحميل الأسعار...</p>
+      </div>
+
+      <footer id="msg-dev" class="dev-footer">
+        <span id="dev-text">طُور بواسطة</span>
+        <p><a href="https://x.com/0z44d" target="_blank">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+          @0z44d
+        </a>
+        </p>
+        <p><a href="https://github.com/z44d" target="_blank">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
+          z44d
+        </a></p>
+      </footer>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="toggleLanguage()" id="btn-lang">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h7M9 3v2c7.22 0 12 5.42 12 11.88 0 2.9-.92 5.65-2.65 7.95M19 13.5a12.01 12.01 0 00-5.46-9.59M11.01 11.51S9.33 6.9 6 3.6"></path>
+          <path d="M15 20l2.5-12 2.5 12M15.5 17h4"></path>
+        </svg>
+        <span id="label-lang">English</span>
+      </button>
+
+      <button class="nav-btn" onclick="toggleTheme()" id="btn-theme">
+        <!-- Sun Icon (Light) -->
+        <svg id="icon-sun" class="theme-icon" style="display: none;" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (Dark) -->
+        <svg id="icon-moon" class="theme-icon" style="display: none;" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <!-- Monitor Icon (System) -->
+        <svg id="icon-system" class="theme-icon" style="display: none;" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <span id="label-theme">System</span>
+      </button>
+    </nav>
+  </body>
+</html>
