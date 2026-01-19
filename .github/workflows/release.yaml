@@ -43,9 +43,8 @@ jobs:
           echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> src-tauri/gen/android/keystore.properties
           echo "storeFile=../release.jks" >> src-tauri/gen/android/keystore.properties
 
-      - name: Prepare App Icons:
-        run:
-          bun run icon
+      - name: Prepare App Icons
+        run: bun run icon
 
       - name: Build Android Release (Split per ABI)
         env:
