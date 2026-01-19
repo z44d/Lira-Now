@@ -43,10 +43,19 @@ jobs:
           echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> src-tauri/gen/android/keystore.properties
           echo "storeFile=../release.jks" >> src-tauri/gen/android/keystore.properties
 
-      - name: Build Android Release
+      - name: Prepare App Icons:
+        run:
+          bun run icon
+
+      - name: Build Android Release (Split per ABI)
         env:
           NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: bun tauri android build --apk true --split-per-abi
+
+      - name: Build Android Release (Universal)
+        env:
+          NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        run: bun tauri android build --apk true
 
       - name: Prepare APKs for Release
         run: |

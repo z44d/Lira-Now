@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "lira-now",
+  "productName": "Lira Now",
   "version": "0.1.0",
   "identifier": "com.z44d.liranow",
   "build": {
