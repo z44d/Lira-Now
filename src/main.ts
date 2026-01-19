@@ -132,7 +132,7 @@ function formatNumber(num: number): string {
   return num.toLocaleString(currentLang === "ar" ? "ar-SY" : "en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-    });
+  });
 }
 
 function getTwemojiUrl(emoji: string): string {
