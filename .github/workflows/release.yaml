@@ -56,19 +56,26 @@ jobs:
           NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: bun tauri android build --apk true
 
-      - name: Prepare APKs for Release
+      - name: Extract Version and Rename APKs
         run: |
+          VERSION=$(jq -r '.version' src-tauri/tauri.conf.json)
+          echo "App Version: $VERSION"
+          
           mkdir -p ./final-artifacts
-          find src-tauri/gen/android/app/build/outputs/apk/ -name "*.apk" -exec cp {} ./final-artifacts/ \;
-          echo "Files in final-artifacts:"
-          ls ./final-artifacts/
+          
+          find src-tauri/gen/android/app/build/outputs/apk/ -name "*.apk" | while read -r apk_path; do
+            filename=$(basename "$apk_path")
+            new_name=$(echo "$filename" | sed "s/^app-/LiraNow-v$VERSION-/")
+            cp "$apk_path" "./final-artifacts/$new_name"
+            echo "Renamed: $filename -> $new_name"
+          done
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: final-artifacts/*.apk
-          body: "Release of Lira Now"
+          body: "Release of Lira Now "
           generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
