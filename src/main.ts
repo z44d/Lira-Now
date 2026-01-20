@@ -5,6 +5,7 @@ import {
   type ThemeMode,
   translations,
 } from "./utils";
+import { openUrl } from "@tauri-apps/plugin-opener";
 
 const currentCity = "damascus";
 let currentLang: "ar" | "en" = "ar";
@@ -228,6 +229,25 @@ function renderDashboard() {
 window.addEventListener("DOMContentLoaded", () => {
   fetchRates();
   applyTheme();
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const anchor = target.closest("a");
+
+    if (anchor?.href) {
+      const url = anchor.href;
+      if (
+        url.startsWith("http") &&
+        !url.startsWith(window.location.origin)
+      ) {
+        e.preventDefault();
+        openUrl(url).catch((err) => {
+          console.error("Failed to open URL:", err);
+          window.open(url, "_blank");
+        });
+      }
+    }
+  });
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
