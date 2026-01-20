@@ -60,9 +60,9 @@ jobs:
         run: |
           VERSION=$(jq -r '.version' src-tauri/tauri.conf.json)
           echo "App Version: $VERSION"
-          
+
           mkdir -p ./final-artifacts
-          
+
           find src-tauri/gen/android/app/build/outputs/apk/ -name "*.apk" | while read -r apk_path; do
             filename=$(basename "$apk_path")
             new_name=$(echo "$filename" | sed "s/^app-/LiraNow-v$VERSION-/")
@@ -70,12 +70,20 @@ jobs:
             echo "Renamed: $filename -> $new_name"
           done
 
+      - name: Read Release Notes
+        id: read_release_notes
+        run: |
+          body_content=$(cat resources/release-notes.md)
+          echo "BODY_CONTENT<<EOF" >> $GITHUB_OUTPUT
+          echo "$body_content" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: final-artifacts/*.apk
-          body: "Release of Lira Now "
+          body: ${{ steps.read_release_notes.outputs.BODY_CONTENT }}
           generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}

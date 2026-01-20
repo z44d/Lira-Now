@@ -1,0 +1,3 @@
+- Open **URL**'s in system browser.
+- Fix **theme** issue.
+- Fix **translation** issue (currencies names in english).
