@@ -24,6 +24,8 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379
       - NODE_ENV=production
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=3000
     tty: true
     restart: unless-stopped
 
