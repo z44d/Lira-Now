@@ -1,3 +1,4 @@
+import { openUrl } from "@tauri-apps/plugin-opener";
 import {
   type Currency,
   type ExchangeRateApiResponse,
@@ -5,7 +6,6 @@ import {
   type ThemeMode,
   translations,
 } from "./utils";
-import { openUrl } from "@tauri-apps/plugin-opener";
 
 const currentCity = "damascus";
 let currentLang: "ar" | "en" = "ar";

@@ -6,7 +6,9 @@ import IORedis from "ioredis";
 const app = new Hono();
 app.use("/*", cors());
 
-const redis = new IORedis();
+const redis = new IORedis(
+  process.env.REDIS_URL ?? "redis://localhost:6379",
+);
 const { EXCHANGERATE_API_KEY, CACHE_TIME_SECONDS = "7200" } = process.env;
 
 export const getRates = async () => {

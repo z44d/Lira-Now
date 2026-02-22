@@ -1,0 +1,9 @@
+src/
+src-tauri/
+node_modules/
+resources/
+.git/
+.github/
+.env
+*.html
+*.md

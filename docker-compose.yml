@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: lira-now-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - lira-now
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lira-now-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    networks:
+      - lira-now
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - NODE_ENV=production
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
+networks:
+  lira-now:
+    driver: bridge
